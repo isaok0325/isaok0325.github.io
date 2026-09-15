@@ -38,7 +38,15 @@ body {
   padding: 24px 20px 64px;
   background: var(--bg);
   color: var(--fg);
-  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  /* 🔴 `-apple-system` / `system-ui` を書かないこと（2026-09-15 に iOS で実測）。
+     この2つは CJK を豆腐（□）で描くうえ、**後続のフォールバックまで止める**＝
+     後ろに "Hiragino Sans" を並べても効かない。存在しない名前を書いたときは
+     正常に次へ送られるので、システムフォント指定に固有の挙動。
+     日本語・韓国語・繁体字・簡体字を実際に表示して選んだのが下の並び。 */
+  font-family: "Helvetica Neue", Helvetica, Arial,
+               "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+               "Apple SD Gothic Neo", "PingFang TC", "PingFang SC",
+               sans-serif;
   font-size: 16px;
   line-height: 1.75;
   -webkit-text-size-adjust: 100%;   /* 横向きで文字だけ巨大化するのを止める */
