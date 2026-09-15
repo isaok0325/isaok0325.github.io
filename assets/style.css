@@ -1,0 +1,82 @@
+/*
+  法務・サポートページ共通のスタイル。
+
+  🔴 外部リソース（Web フォント・CDN・画像）を足さないこと。
+     このページはアプリ内の素の `WKWebView`（`LegalDocumentScreen`）でも開かれる。
+     ネットワークが細い場所で法務文書が白紙になるのを避ける。
+  🔴 ダークモードを必ず持つこと。アプリ本体は暗いので、ライト固定だと
+     設定画面から開いた瞬間に画面が真っ白に飛ぶ。
+*/
+
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --fg: #1c1c1e;
+  --muted: #6b6b70;
+  --rule: #e2e2e6;
+  --accent: #d2620f;      /* ブランドのオレンジ #FF7A1A を白地で読める明度に落としたもの */
+  --draft-bg: #fff4e5;
+  --draft-fg: #8a4b00;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0b0e;        /* DS.Color.canvas */
+    --fg: #f2f2f5;
+    --muted: #a8a8af;
+    --rule: #2a2a31;
+    --accent: #ff7a1a;    /* DS.Color.brandPrimary */
+    --draft-bg: #2a1d0c;
+    --draft-fg: #ffc844;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 24px 20px 64px;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-text-size-adjust: 100%;   /* 横向きで文字だけ巨大化するのを止める */
+  /* 日本語の禁則。既定だと見出しが「ポリシ／ー」のように割れ、行頭に ー が来る */
+  line-break: strict;
+}
+
+main { max-width: 34rem; margin: 0 auto; }
+
+h1 { font-size: 1.5rem; line-height: 1.4; margin: 0 0 4px; }
+h2 { font-size: 1.125rem; margin: 2.25rem 0 .5rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+h2:first-of-type { border-top: none; padding-top: 0; }
+
+p, li { overflow-wrap: anywhere; }   /* 長い URL でも横スクロールさせない */
+ul { padding-left: 1.25rem; }
+li { margin: .35rem 0; }
+
+a { color: var(--accent); }
+
+.updated { color: var(--muted); font-size: .875rem; margin: 0 0 1.5rem; }
+.lede { font-size: 1.0625rem; }
+
+.langs { font-size: .875rem; margin: 0 0 1.5rem; padding: 0; list-style: none; }
+.langs li { display: inline; margin: 0; }
+.langs li:not(:last-child)::after { content: " ・ "; color: var(--muted); }
+.langs [aria-current="page"] { color: var(--fg); font-weight: 600; text-decoration: none; }
+
+table { width: 100%; border-collapse: collapse; font-size: .9375rem; margin: 1rem 0; }
+th, td { text-align: left; vertical-align: top; padding: .5rem .5rem .5rem 0; border-bottom: 1px solid var(--rule); }
+th { color: var(--muted); font-weight: 600; }
+
+.draft {
+  background: var(--draft-bg);
+  color: var(--draft-fg);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: .9375rem;
+  margin: 0 0 1.5rem;
+}
+
+footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .875rem; }
