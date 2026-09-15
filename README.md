@@ -21,15 +21,16 @@ GitHub Pages のユーザーサイトとして `https://isaok0325.github.io/` �
 ## 公開のしかた（リポジトリ作成は Founder/CEO）
 
 0. **6言語が揃っているか**と、**`Effective:` の日付が実際の公開日と大きくずれていないか**を見る
-1. GitHub で **公開（Public）** リポジトリ `isaok0325.github.io` を作る（無料アカウントでは private から Pages を出せない）
-2. このディレクトリを push する
+1. GitHub で **公開（Public）** リポジトリ `isaok0325.github.io` を作る
+   - 🔴 名前は**ユーザー名と完全に一致**させる（これでユーザーサイトになる）
+   - 🔴 無料アカウントは **private から Pages を出せない**ので必ず Public
+   - 🔴 **README / .gitignore / license を一緒に作らない**（空で作る。作ると push が弾かれる）
+2. このディレクトリを push する（**ローカルは init + commit 済み**なので残りは2つ）
    ```sh
-   git init && git add -A && git commit -m "LoadFlow のサポート・プライバシーポリシーを公開する"
-   git branch -M main
    git remote add origin git@github.com:isaok0325/isaok0325.github.io.git
    git push -u origin main
    ```
-3. リポジトリの Settings → Pages → Source を **Deploy from a branch / main / (root)** にする
+3. リポジトリの Settings → Pages → Source を **Deploy from a branch / main / (root)** にして Save
 4. 数分後に `https://isaok0325.github.io/loadflow/privacy/` が 200 で開くことを確認する（審査時に生きている必要がある）
 
 ## 書くときの約束
